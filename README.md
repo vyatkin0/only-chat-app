@@ -1,7 +1,7 @@
 # only-chat
 This is a text-based chat service that built on only-chat platform.
 
-It is implemened using Elasticsearch and RabbitMQ stores and queues.
+It is implemened using in memory stores and queues.
 
 
 PREREQUISITES
