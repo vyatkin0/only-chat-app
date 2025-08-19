@@ -1,6 +1,5 @@
 import { WebSocketServer } from 'ws';
-import { appId, storeConfig, userStoreConfig, host, port, queueConfig, wsPingInterval } from '../config.js';
-import { initialize as initializeQueue } from '@only-chat/in-memory-queue';
+import { host, port, wsPingInterval } from '../config.js';
 import { initialize as initializeStore, saveInstance } from '@only-chat/in-memory-store';
 import { initialize as initializeUserStore } from '@only-chat/in-memory-user-store';
 import { initialize as initializeClient, WsClient } from '@only-chat/client';
@@ -12,8 +11,6 @@ const logger: Log = console;
 
 logger.debug('Application started');
 
-const queue = await initializeQueue();
-
 const store = await initializeStore();
 
 const userStore = await initializeUserStore();
@@ -24,7 +21,7 @@ const instanceId = response._id;
 
 logger.debug('Instance id:', instanceId);
 
-initializeClient({queue, store, userStore, instanceId}, logger);
+initializeClient({store, userStore, instanceId}, logger);
 
 const ws = new WebSocketServer({ host, port });
 
